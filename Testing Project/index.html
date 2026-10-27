@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Memory Circle - A nostalgic, touching memorabilia website celebrating treasured moments, candid laughter, and lifelong friendship.">
+  <meta name="theme-color" content="#F4A5AE">
+  <!-- Device Privacy & Cryptographic Data Protection Meta Tags -->
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' blob:;">
+  <title>The Memory Circle | A Tapestry of Unforgettable Memories</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans for modern clarity, Caveat for nostalgic handwritten warmth -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Relative Stylesheet Link -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =========================================================================
+       1. NAVBAR / HEADER SECTION
+       ========================================================================= -->
+  <header class="site-header" role="banner">
+    <div class="header-container container">
+      <!-- Brand Logo / Title -->
+      <a href="#hero" class="brand-logo" aria-label="The Memory Circle Home">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true" focusable="false">
+          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <span class="brand-name">The Memory Circle</span>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="site-nav" id="primary-navigation" role="navigation" aria-label="Primary Navigation">
+        <ul class="nav-list" role="list">
+          <li class="nav-item"><a href="#hero" class="nav-link active">Home</a></li>
+          <li class="nav-item"><a href="#our-story" class="nav-link">Our Story</a></li>
+          <li class="nav-item"><a href="#memories-vault" class="nav-link">Memories Vault</a></li>
+          <li class="nav-item"><a href="#interactive-hub" class="nav-link">Interactive Hub</a></li>
+          <li class="nav-item"><a href="#leave-a-note" class="nav-link">Leave a Note</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Controls: Theme Toggle & Mobile Hamburger -->
+      <div class="header-actions">
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle light and dark color theme" aria-pressed="false">
+          <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Mobile Navigation Toggle Button -->
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Toggle navigation menu">
+          <span class="hamburger-box" aria-hidden="true">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================= -->
+  <main id="main-content" class="site-main" role="main">
+
+    <!-- =======================================================================
+         2. HERO SECTION
+         ======================================================================= -->
+    <section class="hero-section" id="hero" aria-labelledby="hero-title">
+      <div class="hero-container container">
+        <div class="hero-text-content">
+          <span class="hero-badge">Cherished Moments &bull; Lifelong Friends</span>
+          <h1 id="hero-title" class="hero-heading">
+            Moments Frozen in Time,<br>
+            <span class="highlight-text">Friendships Built to Last.</span>
+          </h1>
+          <p class="hero-lead">
+            Welcome to the sanctuary of our best memories. From silly webcam toy snapshots and unplanned late-night conversations to milestones celebrated side by side, this space is dedicated to the people who turn ordinary days into unforgettable chapters.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#memories-vault" class="btn btn-primary" aria-label="Explore our memory gallery">
+              <span>Explore The Memories</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#leave-a-note" class="btn btn-secondary" aria-label="Leave a message for our circle of friends">
+              <span>Leave a Note</span>
+            </a>
+          </div>
+
+          <div class="hero-stats" role="region" aria-label="Memory highlights summary">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Candid Shots</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Unfiltered Laughs</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item">
+              <span class="stat-number">&infin;</span>
+              <span class="stat-label">Inside Jokes</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Visual Showcase: Floating Polaroids -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="polaroid-stack">
+            <figure class="polaroid-card card-primary">
+              <img src="./assets/group images/webcam-toy-photo1.jpg" alt="Friends smiling candidly during a webcam hangout" class="polaroid-img" loading="eager">
+              <figcaption class="polaroid-caption">Where every story began &hearts;</figcaption>
+            </figure>
+            <figure class="polaroid-card card-secondary">
+              <img src="./assets/group images/webcam-toy-photo2.jpg" alt="A lively group shot capturing contagious smiles and friendship" class="polaroid-img" loading="eager">
+              <figcaption class="polaroid-caption">Unfiltered joy, always</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. CORE CONTENT SECTION
+         Part A: Our Story / Friendship Pillars
+         Part B: The Memories Vault (Photos & Stories Grid)
+         ======================================================================= -->
+    
+    <!-- Part A: About Our Story -->
+    <section class="story-section" id="our-story" aria-labelledby="story-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <span class="section-badge">The Heart of Our Circle</span>
+          <h2 id="story-title" class="section-title">The Bonds That Anchor Us</h2>
+          <p class="section-subtitle">
+            Friendship isn’t about being inseparable; it’s about being separated and knowing nothing really changes. Here are the three pillars that keep The Memory Circle unbreakable.
+          </p>
+        </header>
+
+        <div class="pillars-grid" role="region" aria-label="Friendship pillars">
+          <article class="pillar-card">
+            <div class="pillar-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" focusable="false">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Unfiltered Laughter</h3>
+            <p class="pillar-desc">
+              We never needed a special occasion to smile. Our webcam toy photos captured the goofy, real, silly faces that no polished portrait could ever replicate.
+            </p>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" focusable="false">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Through Thick &amp; Thin</h3>
+            <p class="pillar-desc">
+              When study sessions were exhausting or life became overwhelming, having this circle meant there was always a warm shoulder, a listening ear, and a warm meal waiting.
+            </p>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon-wrapper" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" focusable="false">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="pillar-title">Growing, Never Apart</h3>
+            <p class="pillar-desc">
+              As we step into different seasons, universities, careers, and cities, our shared memories serve as our compass—reminding us of who we are together.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Part B: Core Content Memory Vault -->
+    <section class="gallery-section" id="memories-vault" aria-labelledby="vault-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <span class="section-badge">Visual Anthology</span>
+          <h2 id="vault-title" class="section-title">The Memories Vault</h2>
+          <p class="section-subtitle">
+            Ten candid moments that captured our genuine camaraderie. Click on any card to view the memory in full detail or read the story behind it.
+          </p>
+        </header>
+
+        <!-- Memory Cards Grid -->
+        <div class="memories-grid" id="memories-grid" role="region" aria-label="Photo gallery of friends">
+
+          <!-- Photo 1 -->
+          <article class="memory-card" data-category="candid" data-id="1">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo1.jpg" alt="A candid snapshot of friends sharing warm grins during a casual catch-up" class="memory-img" loading="lazy">
+                <span class="memory-badge">Candid</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#GoldenHour</span>
+                  <time datetime="2026-10-21">Memory #01</time>
+                </div>
+                <h3 class="memory-title">Golden Hour Smiles</h3>
+                <p class="memory-caption">The kind of laughter that gives you stomach aches in the best way possible.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 1 in modal viewer" data-img="./assets/group images/webcam-toy-photo1.jpg" data-title="Golden Hour Smiles" data-desc="The kind of laughter that gives you stomach aches in the best way possible. A snapshot of pure contentment.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 2 -->
+          <article class="memory-card" data-category="hangouts" data-id="2">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo2.jpg" alt="Group of friends clustered happily in front of the webcam" class="memory-img" loading="lazy">
+                <span class="memory-badge">Hangout</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#SquadGoals</span>
+                  <time datetime="2026-10-21">Memory #02</time>
+                </div>
+                <h3 class="memory-title">Spontaneous Gathering</h3>
+                <p class="memory-caption">No plans, no schedule—just good company and contagious positive energy.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 2 in modal viewer" data-img="./assets/group images/webcam-toy-photo2.jpg" data-title="Spontaneous Gathering" data-desc="No plans, no schedule—just good company and contagious positive energy that made hours feel like minutes.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 3 -->
+          <article class="memory-card" data-category="candid" data-id="3">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo3.jpg" alt="Friends laughing together during a comfortable study break" class="memory-img" loading="lazy">
+                <span class="memory-badge">Candid</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#StudyBreaks</span>
+                  <time datetime="2026-10-21">Memory #03</time>
+                </div>
+                <h3 class="memory-title">Study Break Antics</h3>
+                <p class="memory-caption">Supposed to be studying for exams, but making faces at the webcam instead.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 3 in modal viewer" data-img="./assets/group images/webcam-toy-photo3.jpg" data-title="Study Break Antics" data-desc="Supposed to be cramming for exams, but we spent half the night sharing stories and snapping candid webcam memories.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 4 -->
+          <article class="memory-card" data-category="hangouts" data-id="4">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo4.jpg" alt="Close-knit group smiling warmly into the webcam lens" class="memory-img" loading="lazy">
+                <span class="memory-badge">Hangout</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#ComfortZone</span>
+                  <time datetime="2026-10-21">Memory #04</time>
+                </div>
+                <h3 class="memory-title">Late Afternoon Banter</h3>
+                <p class="memory-caption">Where every inside joke found its birthplace and everyone felt right at home.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 4 in modal viewer" data-img="./assets/group images/webcam-toy-photo4.jpg" data-title="Late Afternoon Banter" data-desc="Where every inside joke found its birthplace and everyone felt right at home. True comfort in presence.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 5 -->
+          <article class="memory-card" data-category="milestones" data-id="5">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo5.jpg" alt="A heartwarming group portrait showing deep camaraderie and joy" class="memory-img" loading="lazy">
+                <span class="memory-badge">Milestone</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#OurCircle</span>
+                  <time datetime="2026-10-21">Memory #05</time>
+                </div>
+                <h3 class="memory-title">The Unshakable Crew</h3>
+                <p class="memory-caption">Different personalities blending into one harmonious, lively rhythm.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 5 in modal viewer" data-img="./assets/group images/webcam-toy-photo5.jpg" data-title="The Unshakable Crew" data-desc="Different personalities blending into one harmonious, lively rhythm. A milestone memory of genuine togetherness.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 6 -->
+          <article class="memory-card" data-category="candid" data-id="6">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo6.jpg" alt="Playful poses and funny expressions from the friends circle" class="memory-img" loading="lazy">
+                <span class="memory-badge">Candid</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#PureGiggles</span>
+                  <time datetime="2026-10-21">Memory #06</time>
+                </div>
+                <h3 class="memory-title">Unrehearsed Happiness</h3>
+                <p class="memory-caption">No poses, no filters—just raw, unfiltered happiness preserved forever.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 6 in modal viewer" data-img="./assets/group images/webcam-toy-photo6.jpg" data-title="Unrehearsed Happiness" data-desc="No poses, no filters—just raw, unfiltered happiness preserved forever in time.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 8 -->
+          <article class="memory-card" data-category="hangouts" data-id="8">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo8.jpg" alt="A lively snapshot of the circle sharing a cheerful moment" class="memory-img" loading="lazy">
+                <span class="memory-badge">Hangout</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#WeekendVibes</span>
+                  <time datetime="2026-10-21">Memory #07</time>
+                </div>
+                <h3 class="memory-title">Weekend Shenanigans</h3>
+                <p class="memory-caption">The days we wished would never end, etched in our minds and hearts.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 8 in modal viewer" data-img="./assets/group images/webcam-toy-photo8.jpg" data-title="Weekend Shenanigans" data-desc="The days we wished would never end, etched in our minds and hearts. Good friends make every weekend special.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 9 -->
+          <article class="memory-card" data-category="candid" data-id="9">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo9.jpg" alt="Goofy faces and candid smiles captured in webcam toy style" class="memory-img" loading="lazy">
+                <span class="memory-badge">Candid</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#GoofyTimes</span>
+                  <time datetime="2026-10-21">Memory #08</time>
+                </div>
+                <h3 class="memory-title">The Silly Face Contest</h3>
+                <p class="memory-caption">Never taking ourselves too seriously, always embracing the goofiness.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 9 in modal viewer" data-img="./assets/group images/webcam-toy-photo9.jpg" data-title="The Silly Face Contest" data-desc="Never taking ourselves too seriously, always embracing the goofy humor that made our bond so strong.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 11 -->
+          <article class="memory-card" data-category="milestones" data-id="11">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo11.jpg" alt="A tender portrait of friends sharing a meaningful milestone moment" class="memory-img" loading="lazy">
+                <span class="memory-badge">Milestone</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#Chapters</span>
+                  <time datetime="2026-10-21">Memory #09</time>
+                </div>
+                <h3 class="memory-title">Shared Milestones</h3>
+                <p class="memory-caption">Walking through life’s big hurdles together, knowing we are never alone.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 11 in modal viewer" data-img="./assets/group images/webcam-toy-photo11.jpg" data-title="Shared Milestones" data-desc="Walking through life’s big hurdles together, celebrating triumphs and lifting each other up through every transition.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+          <!-- Photo 12 -->
+          <article class="memory-card" data-category="milestones" data-id="12">
+            <figure class="memory-figure">
+              <div class="memory-img-wrapper">
+                <img src="./assets/group images/webcam-toy-photo12.jpg" alt="The complete group beaming with bright smiles and cherished memories" class="memory-img" loading="lazy">
+                <span class="memory-badge">Milestone</span>
+              </div>
+              <figcaption class="memory-details">
+                <div class="memory-meta">
+                  <span class="memory-tag">#ForeverCircle</span>
+                  <time datetime="2026-10-21">Memory #10</time>
+                </div>
+                <h3 class="memory-title">Forever The Memory Circle</h3>
+                <p class="memory-caption">The ultimate snapshot of our friendship—timeless, heartfelt, and enduring.</p>
+                <button type="button" class="btn-card-expand" aria-label="View photo 12 in modal viewer" data-img="./assets/group images/webcam-toy-photo12.jpg" data-title="Forever The Memory Circle" data-desc="The ultimate snapshot of our friendship. A visual pledge that wherever life leads us, this circle will remain home.">
+                  View Memory &rarr;
+                </button>
+              </figcaption>
+            </figure>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         4. INTERACTIVE COMPONENT CONTAINER
+         - Category Filter Controls
+         - Lightbox / Modal Viewer Container
+         - Interactive Memory Note Board / Sticky Notes Wall
+         ======================================================================= -->
+    <section class="interactive-section" id="interactive-hub" aria-labelledby="interactive-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <span class="section-badge">Interactive Experience</span>
+          <h2 id="interactive-title" class="section-title">The Interactive Memory Hub</h2>
+          <p class="section-subtitle">
+            Filter memories by mood, click on snapshots to inspect, or browse the interactive friendship board filled with heartfelt notes from the circle.
+          </p>
+        </header>
+
+        <!-- Interactive Control Panel: Category Filters -->
+        <div class="interactive-controls-container" role="region" aria-label="Memory Filter Toolbar">
+          <div class="filter-buttons-group" role="group" aria-label="Filter memories by category">
+            <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
+              <span class="filter-dot" aria-hidden="true"></span>
+              All Memories (10)
+            </button>
+            <button type="button" class="filter-btn" data-filter="candid" aria-pressed="false">
+              <span class="filter-dot" aria-hidden="true"></span>
+              Candid Laughs
+            </button>
+            <button type="button" class="filter-btn" data-filter="hangouts" aria-pressed="false">
+              <span class="filter-dot" aria-hidden="true"></span>
+              Casual Hangouts
+            </button>
+            <button type="button" class="filter-btn" data-filter="milestones" aria-pressed="false">
+              <span class="filter-dot" aria-hidden="true"></span>
+              Milestone Moments
+            </button>
+          </div>
+        </div>
+
+        <!-- ===================================================================
+             INTERACTIVE FEATURE: WEBCAM TOY 4X4 PHOTO BOOTH
+             =================================================================== -->
+        <div class="webcam-booth-container" id="webcam-booth" role="region" aria-label="Webcam Toy 4x4 Photo Booth">
+          <div class="booth-header text-center">
+            <span class="section-badge">Live Webcam Toy Booth</span>
+            <h3 class="booth-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="26" height="26" aria-hidden="true" focusable="false">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <circle cx="12" cy="13" r="4"></circle>
+              </svg>
+              <span>Capture Your 4x4 Memory</span>
+            </h3>
+            <p class="booth-subtitle">
+              Relive the iconic webcam toy hangouts with friends! Grant permission to your device's camera to snap 4x4 style photo grids and polaroids.
+            </p>
+          </div>
+
+          <!-- Booth Workspace Container -->
+          <div class="booth-workspace">
+            
+            <!-- State 1: Idle / Permission Request Screen -->
+            <div class="booth-prompt" id="booth-permission-prompt">
+              <div class="prompt-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="48" height="48" focusable="false">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+              </div>
+              <h4 class="prompt-title">Ready to Smile for the Camera?</h4>
+              <p class="prompt-text">
+                Your browser will ask for your permission before accessing the camera. No video or photos are uploaded to any server—everything stays safely on your device.
+              </p>
+              <div class="booth-prompt-actions">
+                <button type="button" class="btn btn-primary btn-start-camera" id="btn-start-camera" aria-label="Enable live camera access">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                  </svg>
+                  <span>Enable Live Camera</span>
+                </button>
+
+                <!-- Native Mobile / iOS Camera Snapshot Trigger -->
+                <input type="file" id="mobile-native-camera-input" accept="image/*" capture="user" class="visually-hidden">
+                <label for="mobile-native-camera-input" class="btn btn-secondary btn-mobile-camera" id="btn-mobile-camera-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true" focusable="false">
+                    <rect x="2" y="2" width="20" height="20" rx="4"></rect>
+                    <circle cx="12" cy="12" r="3.5"></circle>
+                    <path d="M16 6h.01"></path>
+                  </svg>
+                  <span>Snap with Phone Camera</span>
+                </label>
+              </div>
+              <div class="booth-status-msg" id="camera-status-msg" role="status" aria-live="polite"></div>
+            </div>
+
+            <!-- State 2: Active Camera Viewport Screen -->
+            <div class="booth-live-view" id="booth-live-view" hidden>
+              
+              <div class="camera-viewport-wrapper">
+                <!-- Live Video Feed (iOS Safari webkit-playsinline & playsinline) -->
+                <video id="webcam-video" autoplay playsinline webkit-playsinline muted class="webcam-feed" aria-label="Live camera preview"></video>
+                
+                <!-- 4x4 Grid Guide Overlay (4 rows x 4 cols = 16 cells) -->
+                <div class="grid-overlay-4x4" id="grid-overlay-4x4" aria-hidden="true">
+                  <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+                  <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+                  <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+                  <div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div><div class="grid-cell"></div>
+                </div>
+
+                <!-- Animated Countdown Badge -->
+                <div class="countdown-badge" id="countdown-badge" aria-hidden="true" hidden>3</div>
+
+                <!-- Camera Flash Effect -->
+                <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>
+              </div>
+
+              <!-- Booth Controls -->
+              <div class="booth-controls-bar">
+                
+                <!-- Booth Customization Studio Panel -->
+                <div class="booth-studio-panel" role="region" aria-label="Photo Booth Customization Studio">
+                  
+                  <!-- Studio Navigation Tabs -->
+                  <div class="studio-tabs" role="tablist" aria-label="Booth Customization Tabs">
+                    <button type="button" class="studio-tab-btn active" role="tab" aria-selected="true" data-tab="tab-layout">
+                      <span>🎞️ Layout</span>
+                    </button>
+                    <button type="button" class="studio-tab-btn" role="tab" aria-selected="false" data-tab="tab-filters">
+                      <span>✨ Filter</span>
+                    </button>
+                    <button type="button" class="studio-tab-btn" role="tab" aria-selected="false" data-tab="tab-background">
+                      <span>🎨 Frame &amp; BG</span>
+                    </button>
+                    <button type="button" class="studio-tab-btn" role="tab" aria-selected="false" data-tab="tab-text">
+                      <span>✍️ Text &amp; Date</span>
+                    </button>
+                  </div>
+
+                  <!-- Tab 1: Layouts & Frames -->
+                  <div class="studio-tab-content active" id="tab-layout" role="tabpanel">
+                    <label class="studio-label">Choose Strip / Layout Style:</label>
+                    <div class="layout-presets-grid" role="group" aria-label="Layout Presets">
+                      <button type="button" class="layout-btn active" data-layout="grid4x4" aria-pressed="true">
+                        <span class="layout-icon">🔲</span>
+                        <strong>4x4 Multi-Tile</strong>
+                        <small>16-Tile Webcam Toy</small>
+                      </button>
+                      <button type="button" class="layout-btn" data-layout="strip4" aria-pressed="false">
+                        <span class="layout-icon">🎞️</span>
+                        <strong>4-Cut Strip</strong>
+                        <small>Vertical Photobooth</small>
+                      </button>
+                      <button type="button" class="layout-btn" data-layout="collage2x2" aria-pressed="false">
+                        <span class="layout-icon">🪟</span>
+                        <strong>2x2 Square</strong>
+                        <small>4-Photo Collage</small>
+                      </button>
+                      <button type="button" class="layout-btn" data-layout="singlePolaroid" aria-pressed="false">
+                        <span class="layout-icon">📷</span>
+                        <strong>Single Polaroid</strong>
+                        <small>Classic Nostalgia</small>
+                      </button>
+                      <button type="button" class="layout-btn" data-layout="film35mm" aria-pressed="false">
+                        <span class="layout-icon">🎬</span>
+                        <strong>35mm Film Strip</strong>
+                        <small>Sprocket Border</small>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Tab 2: Live Filters -->
+                  <div class="studio-tab-content" id="tab-filters" role="tabpanel" hidden>
+                    <label class="studio-label">Live Camera Filter (Applied in Real-Time):</label>
+                    <div class="filters-pills-row" role="group" aria-label="Camera Filters">
+                      <button type="button" class="filter-pill active" data-filter="normal" aria-pressed="true">Normal</button>
+                      <button type="button" class="filter-pill" data-filter="bw" aria-pressed="false">B&amp;W Noir</button>
+                      <button type="button" class="filter-pill" data-filter="sepia" aria-pressed="false">Retro '90s</button>
+                      <button type="button" class="filter-pill" data-filter="golden" aria-pressed="false">Golden Glow</button>
+                      <button type="button" class="filter-pill" data-filter="cyber" aria-pressed="false">Cyber Pop</button>
+                      <button type="button" class="filter-pill" data-filter="soft" aria-pressed="false">Soft Dream</button>
+                    </div>
+                  </div>
+
+                  <!-- Tab 3: Background & Upload Custom Template -->
+                  <div class="studio-tab-content" id="tab-background" role="tabpanel" hidden>
+                    <div class="studio-field-group">
+                      <label class="studio-label">Frame / Background Color Preset:</label>
+                      <div class="color-swatches-row" role="group" aria-label="Color Swatches">
+                        <button type="button" class="color-swatch active" data-color="#FFFFFF" style="background:#FFFFFF;" aria-label="Classic White" title="Classic White"></button>
+                        <button type="button" class="color-swatch" data-color="#111827" style="background:#111827;" aria-label="Film Black" title="Film Black"></button>
+                        <button type="button" class="color-swatch" data-color="#F4A5AE" style="background:#F4A5AE;" aria-label="Cherry Blossom" title="Cherry Blossom"></button>
+                        <button type="button" class="color-swatch" data-color="#A8577E" style="background:#A8577E;" aria-label="Rosewood" title="Rosewood"></button>
+                        <button type="button" class="color-swatch" data-color="#FEF9D9" style="background:#FEF9D9;" aria-label="Butter Yellow" title="Butter Yellow"></button>
+                        <button type="button" class="color-swatch" data-color="#EFE8FA" style="background:#EFE8FA;" aria-label="Lavender Mist" title="Lavender Mist"></button>
+                        <button type="button" class="color-swatch" data-color="#F5E6D3" style="background:#F5E6D3;" aria-label="Vintage Sepia" title="Vintage Sepia"></button>
+                        <div class="custom-color-picker-wrapper" title="Pick custom frame color">
+                          <input type="color" id="booth-bg-picker" value="#FFFFFF" aria-label="Custom frame color picker">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="studio-field-group template-upload-group">
+                      <label class="studio-label">Or Upload Your Own Template (PNG / JPG):</label>
+                      <div class="template-upload-bar">
+                        <input type="file" id="booth-template-file" accept="image/png, image/jpeg" class="visually-hidden">
+                        <label for="booth-template-file" class="btn btn-secondary btn-sm btn-upload-template">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true" focusable="false"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                          <span>Upload Custom Frame</span>
+                        </label>
+                        <span id="template-file-name" class="template-file-name">No custom file chosen</span>
+                        <button type="button" id="btn-clear-template" class="btn-clear-template" hidden title="Remove custom template" aria-label="Remove custom template">&times;</button>
+                      </div>
+                      <small class="studio-help-text">Tip: Use transparent PNG for custom overlay frames, or JPG for background patterns!</small>
+                    </div>
+                  </div>
+
+                  <!-- Tab 4: Custom Text & Timestamps -->
+                  <div class="studio-tab-content" id="tab-text" role="tabpanel" hidden>
+                    <div class="studio-inputs-grid">
+                      <div class="studio-input-item">
+                        <label for="booth-text-title" class="studio-input-label">Title / Circle Name:</label>
+                        <input type="text" id="booth-text-title" class="form-control" value="The Memory Circle" maxlength="35" placeholder="e.g. The Memory Circle / Squad '26">
+                      </div>
+
+                      <div class="studio-input-item">
+                        <label for="booth-text-note" class="studio-input-label">Caption / Personal Note:</label>
+                        <input type="text" id="booth-text-note" class="form-control" value="Moments Frozen in Time ♥" maxlength="50" placeholder="e.g. Best friends forever / Summer reunion">
+                      </div>
+
+                      <div class="studio-input-item">
+                        <label for="booth-timestamp-mode" class="studio-input-label">Timestamp Style:</label>
+                        <select id="booth-timestamp-mode" class="form-control form-select">
+                          <option value="datetime">Current Date &amp; Time (Standard)</option>
+                          <option value="retro90s">Retro '90s Orange Stamp ('26 10 27)</option>
+                          <option value="dateonly">Date Only (e.g. Oct 27, 2026)</option>
+                          <option value="custom">Custom Date Text</option>
+                          <option value="none">No Timestamp</option>
+                        </select>
+                      </div>
+
+                      <div class="studio-input-item" id="custom-date-field" hidden>
+                        <label for="booth-custom-date-text" class="studio-input-label">Custom Date Text:</label>
+                        <input type="text" id="booth-custom-date-text" class="form-control" placeholder="e.g. November 2026 • Reunion">
+                      </div>
+
+                      <div class="studio-input-item">
+                        <label for="booth-font-style" class="studio-input-label">Font Style:</label>
+                        <select id="booth-font-style" class="form-control form-select">
+                          <option value="handwriting">Handwritten Script (Caveat)</option>
+                          <option value="sans">Clean Modern (Plus Jakarta)</option>
+                          <option value="mono">Retro '90s Monospace</option>
+                          <option value="serif">Classic Elegant Serif</option>
+                        </select>
+                      </div>
+
+                      <div class="studio-input-item">
+                        <label for="booth-text-color" class="studio-input-label">Text Color:</label>
+                        <div class="text-color-row">
+                          <input type="color" id="booth-text-color" value="#A8577E" class="color-input-circle" aria-label="Text color">
+                          <span class="color-hex-label" id="text-color-hex">#A8577E</span>
+                          <button type="button" class="btn-text-auto-color" id="btn-text-auto-color" title="Match frame contrast automatically">Auto Contrast</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="booth-actions-row">
+                  <button type="button" class="btn btn-primary btn-capture" id="btn-capture-photo" aria-label="Capture customized photo">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <circle cx="12" cy="12" r="4"></circle>
+                    </svg>
+                    <span>Snap Photo</span>
+                  </button>
+
+                  <button type="button" class="btn btn-secondary" id="btn-flip-camera" aria-label="Switch between front and back camera" title="Flip Camera">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                      <path d="M20 16v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-4"></path>
+                      <path d="M4 8V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v4"></path>
+                      <polyline points="16 12 12 8 8 12"></polyline>
+                      <line x1="12" y1="8" x2="12" y2="16"></line>
+                    </svg>
+                    <span>Flip Camera</span>
+                  </button>
+
+                  <button type="button" class="btn btn-secondary" id="btn-stop-camera" aria-label="Turn off camera">
+                    Turn Off Camera
+                  </button>
+                </div>
+
+                <p class="booth-hint" id="booth-mode-hint">
+                  Selected: 4x4 Multi-Tile Grid with Natural filter
+                </p>
+              </div>
+
+            </div>
+
+            <!-- State 3: Captured Result & Export Screen -->
+            <div class="booth-result-view" id="booth-result-view" hidden>
+              <div class="result-card polaroid-result-card">
+                <canvas id="booth-canvas" class="booth-canvas" hidden></canvas>
+                <div class="result-image-wrapper">
+                  <img id="result-photo-img" alt="Captured 4x4 webcam toy memory photo" class="result-img">
+                </div>
+                <div class="result-polaroid-caption">
+                  <span class="caption-date" id="result-photo-date">The Memory Circle &bull; Live Memory</span>
+                  <span class="caption-badge" id="result-photo-badge">#4x4WebcamToy</span>
+                </div>
+              </div>
+
+              <div class="result-actions-group">
+                <a href="#" download="the-memory-circle-4x4-webcam-photo.png" class="btn btn-primary" id="btn-download-photo" aria-label="Download your 4x4 photo">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  <span>Download 4x4 Photo</span>
+                </a>
+                
+                <button type="button" class="btn btn-secondary" id="btn-pin-captured-photo" aria-label="Pin this photo to the circle memory board">
+                  Pin to Memory Board
+                </button>
+
+                <button type="button" class="btn btn-secondary" id="btn-retake-photo" aria-label="Retake another photo">
+                  Retake Photo
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Interactive Feature: Live Friendship Note Wall Preview -->
+        <div class="interactive-notes-wall-container" role="region" aria-label="Friendship sticky note board">
+          <div class="notes-wall-header">
+            <h3 class="notes-wall-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true" focusable="false">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Circle Memory Board</span>
+            </h3>
+            <p class="notes-wall-subtitle">Live notes posted by friends. Submit yours below to see it appear right here!</p>
+          </div>
+
+          <!-- Sticky Notes Board Grid -->
+          <div class="sticky-notes-grid" id="sticky-notes-board" role="list" aria-label="Messages from friends">
+            
+            <article class="sticky-note note-pink" role="listitem">
+              <div class="note-pin" aria-hidden="true"></div>
+              <p class="note-text">&ldquo;No matter where we all go after graduation, remember that Friday nights are always reserved for The Memory Circle! Miss you all!&rdquo;</p>
+              <footer class="note-author">
+                <strong>&mdash; Alex</strong>
+                <time datetime="2026-10-21">Memory #01</time>
+              </footer>
+            </article>
+
+            <article class="sticky-note note-yellow" role="listitem">
+              <div class="note-pin" aria-hidden="true"></div>
+              <p class="note-text">&ldquo;Looking back at these webcam photos made me tear up a bit. We truly had the best times without even trying.&rdquo;</p>
+              <footer class="note-author">
+                <strong>&mdash; Sam</strong>
+                <time datetime="2026-10-22">Candid Laughter</time>
+              </footer>
+            </article>
+
+            <article class="sticky-note note-lavender" role="listitem">
+              <div class="note-pin" aria-hidden="true"></div>
+              <p class="note-text">&ldquo;Thank you for putting this together. You always were the glue that held our group tight. Proud of all of us!&rdquo;</p>
+              <footer class="note-author">
+                <strong>&mdash; Jordan</strong>
+                <time datetime="2026-10-25">Forever Circle</time>
+              </footer>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- Accessible Lightbox Modal Dialog Container -->
+        <dialog class="memory-modal" id="memory-modal" aria-labelledby="modal-title" aria-modal="true" hidden>
+          <div class="modal-backdrop" id="modal-backdrop"></div>
+          <div class="modal-dialog-content">
+            <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close memory modal window">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true" focusable="false">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <div class="modal-body">
+              <div class="modal-image-wrapper">
+                <img src="./assets/group images/webcam-toy-photo1.jpg" alt="" id="modal-img" class="modal-img">
+              </div>
+              <div class="modal-caption-wrapper">
+                <span class="modal-badge" id="modal-badge">Memory Vault</span>
+                <h3 id="modal-title" class="modal-title">Memory Title</h3>
+                <p id="modal-desc" class="modal-desc">Detailed memory description appears here.</p>
+                <div class="modal-actions">
+                  <button type="button" class="btn btn-secondary btn-sm" id="modal-copy-btn" aria-label="Copy link to this memory">
+                    Share Memory
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </dialog>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. CONTACT / CTA SECTION
+         Working Static Contact Form & Direct Contact Cards
+         ======================================================================= -->
+    <section class="contact-section" id="leave-a-note" aria-labelledby="contact-title">
+      <div class="container">
+        <header class="section-header text-center">
+          <span class="section-badge">Keep In Touch</span>
+          <h2 id="contact-title" class="section-title">Leave a Note for the Circle</h2>
+          <p class="section-subtitle">
+            Are you one of the friends featured here, or someone wishing us well? Write a message, mention your favorite inside joke, and add your note to our wall!
+          </p>
+        </header>
+
+        <div class="contact-layout-grid">
+          
+          <!-- Contact Form Container -->
+          <div class="contact-form-wrapper">
+            <form class="memory-form" id="memory-form" novalidate aria-label="Friendship message submission form">
+              
+              <div class="form-feedback" id="form-feedback" role="alert" aria-live="polite" hidden></div>
+
+              <div class="form-row">
+                <!-- Name Field -->
+                <div class="form-group">
+                  <label for="friend-name" class="form-label">
+                    Your Name or Nickname <span class="required-indicator" aria-hidden="true">*</span>
+                  </label>
+                  <input type="text" id="friend-name" name="friendName" class="form-control" placeholder="e.g. Maya / The Captain" required aria-required="true" autocomplete="name">
+                  <span class="form-error-msg" id="name-error" aria-live="polite"></span>
+                </div>
+
+                <!-- Favorite Memory Field -->
+                <div class="form-group">
+                  <label for="favorite-memory" class="form-label">
+                    Favorite Shared Memory / Date
+                  </label>
+                  <input type="text" id="favorite-memory" name="favoriteMemory" class="form-control" placeholder="e.g. That midnight diner run in November">
+                </div>
+              </div>
+
+              <!-- Memory Tag / Category -->
+              <div class="form-group">
+                <label for="memory-tag" class="form-label">
+                  Choose a Memory Tag
+                </label>
+                <select id="memory-tag" name="memoryTag" class="form-control form-select">
+                  <option value="candid">Candid Laughs</option>
+                  <option value="hangouts">Casual Hangout</option>
+                  <option value="milestones">Milestone Memory</option>
+                  <option value="inside-joke">Inside Joke</option>
+                  <option value="appreciation">Circle Appreciation</option>
+                </select>
+              </div>
+
+              <!-- Message Field -->
+              <div class="form-group">
+                <label for="friend-message" class="form-label">
+                  Your Heartfelt Note <span class="required-indicator" aria-hidden="true">*</span>
+                </label>
+                <textarea id="friend-message" name="friendMessage" class="form-control" rows="5" placeholder="Write from the heart... What does The Memory Circle mean to you?" required aria-required="true"></textarea>
+                <span class="form-error-msg" id="message-error" aria-live="polite"></span>
+              </div>
+
+              <!-- Form Submit CTA -->
+              <button type="submit" class="btn btn-primary btn-submit" id="submit-btn" aria-label="Post your message to the circle board">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+                <span>Pin to Memory Board</span>
+              </button>
+            </form>
+          </div>
+
+          <!-- Direct Contact & Friendship Cards (Aside) -->
+          <aside class="contact-aside" aria-label="Circle communication channels">
+            
+            <div class="info-card">
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" focusable="false">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="info-content">
+                <h3 class="info-title">The Circle Group Chat</h3>
+                <p class="info-desc">Active every single day. Reach out for impromptu gaming sessions, study support, and spontaneous memes.</p>
+                <a href="#primary-navigation" class="info-link" aria-label="Learn more about our group channels">Always Online &bull; 24/7</a>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" focusable="false">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="info-content">
+                <h3 class="info-title">Direct Circle Inquiries</h3>
+                <p class="info-desc">Want to contribute high-res files or propose our next reunion trip destination? Email our circle curator.</p>
+                <a href="mailto:thememorycircle@example.com" class="info-link" aria-label="Send email to circle curator">thememorycircle@example.com</a>
+              </div>
+            </div>
+
+            <div class="info-card highlight-card">
+              <div class="info-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" focusable="false">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 14 14"></polyline>
+                </svg>
+              </div>
+              <div class="info-content">
+                <h3 class="info-title">Next Annual Reunion</h3>
+                <p class="info-desc">Counting down to our next big group meetup. Save the date and pack your memories!</p>
+                <span class="info-badge">Summer Reunion &bull; In Planning</span>
+              </div>
+            </div>
+
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       6. FOOTER SECTION
+       ========================================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo footer-logo" aria-label="The Memory Circle Home">
+            <svg class="brand-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span class="brand-name">The Memory Circle</span>
+          </a>
+          <p class="footer-tagline">
+            Dedicated to the moments that shaped us and the friends who stayed by our side.
+          </p>
+        </div>
+
+        <!-- Quick Navigation Links -->
+        <nav class="footer-nav" aria-label="Footer Navigation">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links" role="list">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#our-story" class="footer-link">Our Story</a></li>
+            <li><a href="#memories-vault" class="footer-link">Memories Vault</a></li>
+            <li><a href="#interactive-hub" class="footer-link">Interactive Hub</a></li>
+            <li><a href="#leave-a-note" class="footer-link">Leave a Note</a></li>
+          </ul>
+        </nav>
+
+        <!-- Friendship & Social Links -->
+        <div class="footer-social-section">
+          <h4 class="footer-heading">Shared Spaces</h4>
+          <p class="footer-social-text">Find our private albums, playlist, and circle hub.</p>
+          <ul class="social-links-list" role="list" aria-label="Shared community links">
+            <li>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Visit our Instagram memory page">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagram</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://spotify.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Listen to our shared roadtrip playlist on Spotify">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M8 11.5c3.5-1 7.5-.5 10 1"></path>
+                  <path d="M7 14.5c4-1 8-.5 11 1"></path>
+                  <path d="M9 8.5c3-1 6-.5 8.5 1"></path>
+                </svg>
+                <span>Circle Playlist</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://photos.google.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="View our shared Google Photos album">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true" focusable="false">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                  <polyline points="21 15 16 10 5 21"></polyline>
+                </svg>
+                <span>Shared Album</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright-text">
+          &copy; 2026 The Memory Circle. Crafted with nostalgic love &hearts; for the best group of friends anyone could ask for.
+        </p>
+        <p class="footer-quote">
+          &ldquo;We didn't realize we were making memories; we just knew we were having fun.&rdquo;
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Relative Script Link -->
+  <script src="./script.js"></script>
+</body>
+</html>
