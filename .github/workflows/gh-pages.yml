@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+# Run on every push to the default branch
+on:
+  push:
+    branches:
+      - main   # change to `master` if that is your default
+
+permissions:
+  contents: read
+  pages: write          # needed for the `pages-deploy` step
+  id-token: write       # needed for OIDC authentication
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2️⃣ (optional) Install a minimal Node toolchain – not required for a pure‑HTML site,
+      #    but kept for possible future build steps
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3️⃣ Upload the site files as a GitHub Pages artifact
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Path to the directory that contains index.html, style.css, script.js, assets/
+          path: ./
+
+      # 4️⃣ Deploy to the `gh-pages` branch (or to the repository root if you use the
+      #    “GitHub Pages from / (root)” setting)
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+    # Optional: expose the URL of the deployed site
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
