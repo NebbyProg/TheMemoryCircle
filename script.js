@@ -1191,6 +1191,36 @@ document.addEventListener('DOMContentLoaded', () => {
         offCtx.scale(-1, 1);
       }
       offCtx.drawImage(video, 0, 0, vWidth, vHeight);
+      // Return the off-screen canvas for later rendering
+      return offCanvas;
+    };
+
+    /**
+     * Draw an image onto a canvas context, cropping to fill the destination area while preserving aspect ratio.
+     * This implements a "cover" strategy: the image fills the dest rectangle, any excess is cropped.
+     */
+    const drawCropped = (ctx, img, dx, dy, dWidth, dHeight) => {
+      const sWidth = img.width;
+      const sHeight = img.height;
+      const destRatio = dWidth / dHeight;
+      const srcRatio = sWidth / sHeight;
+      let sx = 0, sy = 0, sw = sWidth, sh = sHeight;
+      if (srcRatio > destRatio) {
+        // Source is wider than destination: crop horizontally
+        sw = sHeight * destRatio;
+        sx = (sWidth - sw) / 2;
+      } else {
+        // Source is taller than destination: crop vertically
+        sh = sWidth / destRatio;
+        sy = (sHeight - sh) / 2;
+      }
+      ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dWidth, dHeight);
+    };
+      if (currentFacingMode === 'user') {
+        offCtx.translate(vWidth, 0);
+        offCtx.scale(-1, 1);
+      }
+      offCtx.drawImage(video, 0, 0, vWidth, vHeight);
 
       return offCanvas;
     };
@@ -1298,7 +1328,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.fillStyle = '#0F172A';
             ctx.fillRect(x, y, cellW, cellH);
-            ctx.drawImage(frame, 0, 0, frame.width, frame.height, x, y, cellW, cellH);
+            drawCropped(ctx, frame, x, y, cellW, cellH);
 
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
             ctx.lineWidth = 1.5;
@@ -1318,7 +1348,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ctx.fillStyle = '#0F172A';
           ctx.fillRect(outerMargin, y, cellW, cellH);
-          ctx.drawImage(f, 0, 0, f.width, f.height, outerMargin, y, cellW, cellH);
+          drawCropped(ctx, f, outerMargin, y, cellW, cellH);
 
           ctx.strokeStyle = currentLayout === 'film35mm' ? '#FFFFFF' : 'rgba(168, 87, 126, 0.25)';
           ctx.lineWidth = currentLayout === 'film35mm' ? 2 : 1.5;
@@ -1350,7 +1380,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ctx.fillStyle = '#0F172A';
           ctx.fillRect(x, y, cellW, cellH);
-          ctx.drawImage(f, 0, 0, f.width, f.height, x, y, cellW, cellH);
+          drawCropped(ctx, f, x, y, cellW, cellH);
 
           ctx.strokeStyle = 'rgba(168, 87, 126, 0.3)';
           ctx.lineWidth = 3;
