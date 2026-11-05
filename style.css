@@ -358,7 +358,6 @@ ul, ol {
 
 /* Primary Navigation (Mobile Drawer by default) */
 .site-nav {
-  pointer-events: none; /* prevent hidden nav from blocking clicks */
   position: fixed;
   top: var(--header-height);
   left: 0;
@@ -1139,6 +1138,117 @@ ul, ol {
   z-index: 15;
   animation: countdownPulse 0.5s ease-out;
 }
+
+/* ==========================================================================
+   Live Eye AF Viewfinder Reticles & Locked Status HUD
+   ========================================================================== */
+.eye-af-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  overflow: hidden;
+}
+
+.eye-af-box {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  border: 1.5px solid rgba(16, 185, 129, 0.85);
+  background: rgba(16, 185, 129, 0.08);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.55), inset 0 0 6px rgba(16, 185, 129, 0.3);
+  transition: left 0.1s cubic-bezier(0.2, 0.8, 0.2, 1),
+              top 0.1s cubic-bezier(0.2, 0.8, 0.2, 1),
+              width 0.15s ease,
+              height 0.15s ease;
+  pointer-events: none;
+}
+
+.eye-af-box .corner {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-color: #34D399;
+  border-style: solid;
+}
+
+.eye-af-box .corner.top-left {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.eye-af-box .corner.top-right {
+  top: -2px;
+  right: -2px;
+  border-width: 2px 2px 0 0;
+}
+
+.eye-af-box .corner.btm-left {
+  bottom: -2px;
+  left: -2px;
+  border-width: 0 0 2px 2px;
+}
+
+.eye-af-box .corner.btm-right {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+.eye-af-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(16, 185, 129, 0.6);
+  border-radius: var(--radius-full);
+  color: #34D399;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45);
+  animation: eyeAfBadgeGlow 2s infinite ease-in-out;
+}
+
+.eye-af-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+  box-shadow: 0 0 6px #10B981;
+}
+
+@keyframes eyeAfBadgeGlow {
+  0%, 100% {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.45), 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 3px 14px rgba(0, 0, 0, 0.55), 0 0 14px rgba(16, 185, 129, 0.65);
+  }
+}
+
+#btn-toggle-eye-af.active {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: #10B981;
+  color: #065F46;
+}
+
+@media (prefers-color-scheme: dark) {
+  #btn-toggle-eye-af.active {
+    background-color: rgba(16, 185, 129, 0.25);
+    color: #34D399;
+  }
+}
+
 
 @keyframes countdownPulse {
   0% { transform: translate(-50%, -50%) scale(0.6); opacity: 0; }

@@ -543,6 +543,26 @@
                 <!-- Animated Countdown Badge -->
                 <div class="countdown-badge" id="countdown-badge" aria-hidden="true" hidden>3</div>
 
+                <!-- Live Eye AF Viewfinder Reticles & Locked Status -->
+                <div class="eye-af-overlay" id="eye-af-overlay" aria-hidden="true">
+                  <div class="eye-af-box" id="eye-af-box-left" style="display:none;">
+                    <span class="corner top-left"></span>
+                    <span class="corner top-right"></span>
+                    <span class="corner btm-left"></span>
+                    <span class="corner btm-right"></span>
+                  </div>
+                  <div class="eye-af-box" id="eye-af-box-right" style="display:none;">
+                    <span class="corner top-left"></span>
+                    <span class="corner top-right"></span>
+                    <span class="corner btm-left"></span>
+                    <span class="corner btm-right"></span>
+                  </div>
+                  <div class="eye-af-badge" id="eye-af-badge" style="display:none;">
+                    <span class="eye-af-dot"></span>
+                    <span class="eye-af-text">EYE AF LOCKED</span>
+                  </div>
+                </div>
+
                 <!-- Camera Flash Effect -->
                 <div class="camera-flash" id="camera-flash" aria-hidden="true"></div>
               </div>
@@ -717,6 +737,17 @@
                       <line x1="12" y1="8" x2="12" y2="16"></line>
                     </svg>
                     <span>Flip Camera</span>
+                  </button>
+
+                  <button type="button" class="btn btn-secondary active" id="btn-toggle-eye-af" aria-pressed="true" aria-label="Toggle Eye AF Auto Detection" title="Toggle Real-Time Eye AF">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" focusable="false">
+                      <circle cx="12" cy="12" r="3"></circle>
+                      <path d="M3 7V5a2 2 0 0 1 2-2h2"></path>
+                      <path d="M17 3h2a2 2 0 0 1 2 2v2"></path>
+                      <path d="M21 17v2a2 2 0 0 1-2 2h-2"></path>
+                      <path d="M7 21H5a2 2 0 0 1-2-2v-2"></path>
+                    </svg>
+                    <span>Eye AF: ON</span>
                   </button>
 
                   <button type="button" class="btn btn-secondary" id="btn-stop-camera" aria-label="Turn off camera">
@@ -1056,7 +1087,9 @@
     </div>
   </footer>
 
-  <!-- Relative Script Link -->
+  <!-- Core Camera Engine & Aspect Ratio / Eye AF Processor -->
+  <script src="./camera-engine.js"></script>
+  <!-- Main Application Script -->
   <script src="./script.js"></script>
 </body>
 </html>

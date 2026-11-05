@@ -652,6 +652,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('webcam-video');
     const gridOverlay = document.getElementById('grid-overlay-4x4');
     const countdownBadge = document.getElementById('countdown-badge');
+    const eyeAfOverlay = document.getElementById('eye-af-overlay');
+    const eyeAfBoxLeft = document.getElementById('eye-af-box-left');
+    const eyeAfBoxRight = document.getElementById('eye-af-box-right');
+    const eyeAfBadge = document.getElementById('eye-af-badge');
+    const eyeAfToggleBtn = document.getElementById('btn-toggle-eye-af');
     const flash = document.getElementById('camera-flash');
     const canvas = document.getElementById('booth-canvas');
     const resultImg = document.getElementById('result-photo-img');
@@ -696,6 +701,179 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentBgColor = '#FFFFFF';
     let customTemplateImg = null;
     let lastCapturedFrames = null; // Store captured frames for instant post-capture edits
+
+    // --- Eye AF & Aspect Ratio State ---
+    let eyeAfEnabled = true;
+    let currentFocalX = 0.5;
+    let currentFocalY = 0.38;
+    let eyeAfDetectionTimer = null;
+    let eyeAfLocked = false;
+    let nativeFaceDetector = null;
+    if (typeof window !== 'undefined' && 'FaceDetector' in window) {
+      try {
+        nativeFaceDetector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 1 });
+      } catch (e) {
+        nativeFaceDetector = null;
+      }
+    }
+
+    // Downscaled analysis canvas for real-time pure JS Eye AF detection
+    const offscreenAnalysisCanvas = document.createElement('canvas');
+    offscreenAnalysisCanvas.width = 160;
+    offscreenAnalysisCanvas.height = 120;
+    const offscreenAnalysisCtx = offscreenAnalysisCanvas.getContext('2d', { willReadFrequently: true });
+
+    /**
+     * Draw image or canvas into target rectangle with cover aspect ratio,
+     * completely eliminating stretching and squishing across all layouts.
+     */
+    const drawCover = (ctx, img, dx, dy, dw, dh, fx = 0.5, fy = 0.38) => {
+      if (window.CameraEngine && typeof window.CameraEngine.drawImageCover === 'function') {
+        window.CameraEngine.drawImageCover(ctx, img, dx, dy, dw, dh, fx, fy);
+        return;
+      }
+      const sw = img.videoWidth || img.naturalWidth || img.width;
+      const sh = img.videoHeight || img.naturalHeight || img.height;
+      const sRatio = sw / sh;
+      const tRatio = dw / dh;
+      let sx = 0, sy = 0, cw = sw, ch = sh;
+      if (sRatio > tRatio) {
+        cw = Math.round(sh * tRatio);
+        sx = Math.max(0, Math.min(sw - cw, Math.round(sw * fx - cw / 2)));
+      } else {
+        ch = Math.round(sw / tRatio);
+        sy = Math.max(0, Math.min(sh - ch, Math.round(sh * fy - ch / 2)));
+      }
+      ctx.drawImage(img, sx, sy, cw, ch, dx, dy, dw, dh);
+    };
+
+    /**
+     * Update Eye AF Viewfinder Reticles & Locked Indicator
+     */
+    const updateEyeAfUI = (detected, leftNormX, leftNormY, rightNormX, rightNormY, boxSizeNorm = 0.12) => {
+      if (!eyeAfEnabled) {
+        if (eyeAfBoxLeft) eyeAfBoxLeft.style.display = 'none';
+        if (eyeAfBoxRight) eyeAfBoxRight.style.display = 'none';
+        if (eyeAfBadge) eyeAfBadge.style.display = 'none';
+        return;
+      }
+
+      if (detected) {
+        const isMirrored = currentFacingMode === 'user';
+        const leftDisplayX = (isMirrored ? (1 - leftNormX) : leftNormX) * 100;
+        const rightDisplayX = (isMirrored ? (1 - rightNormX) : rightNormX) * 100;
+        const leftDisplayY = leftNormY * 100;
+        const rightDisplayY = rightNormY * 100;
+
+        const boxSizePx = Math.max(26, Math.round(boxSizeNorm * (video.clientWidth || 320)));
+
+        if (eyeAfBoxLeft) {
+          eyeAfBoxLeft.style.display = 'block';
+          eyeAfBoxLeft.style.left = `${leftDisplayX}%`;
+          eyeAfBoxLeft.style.top = `${leftDisplayY}%`;
+          eyeAfBoxLeft.style.width = `${boxSizePx}px`;
+          eyeAfBoxLeft.style.height = `${boxSizePx}px`;
+        }
+
+        if (eyeAfBoxRight) {
+          eyeAfBoxRight.style.display = 'block';
+          eyeAfBoxRight.style.left = `${rightDisplayX}%`;
+          eyeAfBoxRight.style.top = `${rightDisplayY}%`;
+          eyeAfBoxRight.style.width = `${boxSizePx}px`;
+          eyeAfBoxRight.style.height = `${boxSizePx}px`;
+        }
+
+        if (eyeAfBadge) {
+          eyeAfBadge.style.display = 'inline-flex';
+        }
+
+        currentFocalX = (leftNormX + rightNormX) / 2;
+        currentFocalY = (leftNormY + rightNormY) / 2;
+
+        if (!eyeAfLocked) {
+          eyeAfLocked = true;
+          playBeep(1760, 0.05); // High-tech focus confirmation chime (A6)
+        }
+      } else {
+        if (eyeAfBoxLeft) eyeAfBoxLeft.style.display = 'none';
+        if (eyeAfBoxRight) eyeAfBoxRight.style.display = 'none';
+        if (eyeAfBadge) eyeAfBadge.style.display = 'none';
+        eyeAfLocked = false;
+        currentFocalX = 0.5;
+        currentFocalY = 0.38;
+      }
+    };
+
+    /**
+     * Real-time Eye AF Detection Loop (runs every 90ms)
+     */
+    const startEyeAfLoop = () => {
+      stopEyeAfLoop();
+      eyeAfDetectionTimer = setInterval(async () => {
+        if (!eyeAfEnabled || !activeStream || video.paused || video.ended || !video.videoWidth) {
+          updateEyeAfUI(false);
+          return;
+        }
+
+        try {
+          // 1. Try Native FaceDetector API where supported (Chromium / Android)
+          if (nativeFaceDetector) {
+            const faces = await nativeFaceDetector.detect(video);
+            if (faces && faces.length > 0) {
+              const face = faces[0];
+              const vW = video.videoWidth;
+              const vH = video.videoHeight;
+              const bb = face.boundingBox;
+
+              let leftEyeX = bb.x + bb.width * 0.32;
+              let rightEyeX = bb.x + bb.width * 0.68;
+              let eyeY = bb.y + bb.height * 0.38;
+
+              if (face.landmarks) {
+                const leftL = face.landmarks.find(l => l.type === 'eye' && l.location.x < bb.x + bb.width / 2);
+                const rightL = face.landmarks.find(l => l.type === 'eye' && l.location.x >= bb.x + bb.width / 2);
+                if (leftL && rightL) {
+                  leftEyeX = leftL.location.x;
+                  rightEyeX = rightL.location.x;
+                  eyeY = (leftL.location.y + rightL.location.y) / 2;
+                }
+              }
+
+              updateEyeAfUI(true, leftEyeX / vW, eyeY / vH, rightEyeX / vW, eyeY / vH, (bb.width * 0.22) / vW);
+              return;
+            }
+          }
+
+          // 2. Pure Vanilla JS Pupil / Eye Contrast Fallback (iOS Safari, Firefox, Desktop)
+          if (window.CameraEngine && typeof window.CameraEngine.detectPupilsFromRGBA === 'function') {
+            offscreenAnalysisCtx.drawImage(video, 0, 0, 160, 120);
+            const imgData = offscreenAnalysisCtx.getImageData(0, 0, 160, 120);
+            const result = window.CameraEngine.detectPupilsFromRGBA(imgData.data, 160, 120);
+
+            if (result && result.detected) {
+              const leftNormX = result.leftEye.x / 160;
+              const leftNormY = result.leftEye.y / 120;
+              const rightNormX = result.rightEye.x / 160;
+              const rightNormY = result.rightEye.y / 120;
+              const boxSizeNorm = result.leftEye.box.width / 160;
+              updateEyeAfUI(true, leftNormX, leftNormY, rightNormX, rightNormY, boxSizeNorm);
+            } else {
+              updateEyeAfUI(false);
+            }
+          }
+        } catch (e) {
+          // Keep loop resilient
+        }
+      }, 90);
+    };
+
+    const stopEyeAfLoop = () => {
+      if (eyeAfDetectionTimer) {
+        clearInterval(eyeAfDetectionTimer);
+        eyeAfDetectionTimer = null;
+      }
+      updateEyeAfUI(false);
+    };
 
     // Filter CSS mappings for Canvas context
     const filterCanvasMap = {
@@ -1011,10 +1189,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showStatus('Requesting camera permission from your browser...', 'info');
 
       try {
-        // iOS Safari optimized constraints
+        // Multi-device optimized constraints with continuous autofocus request
         const constraints = {
           video: {
-            facingMode: { ideal: currentFacingMode }
+            facingMode: { ideal: currentFacingMode },
+            advanced: [{ focusMode: 'continuous' }]
           },
           audio: false
         };
@@ -1031,6 +1210,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Apply horizontal mirror only for front/selfie camera
         video.style.transform = currentFacingMode === 'user' ? 'scaleX(-1)' : 'none';
+
+        // Start real-time Eye AF detection loop
+        startEyeAfLoop();
 
         // Switch to active live camera view (hide prompt screen & enable access button)
         promptScreen.hidden = true;
@@ -1056,6 +1238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const stopCamera = () => {
+      stopEyeAfLoop();
       if (activeStream) {
         activeStream.getTracks().forEach((track) => track.stop());
         activeStream = null;
@@ -1073,6 +1256,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startBtn.addEventListener('click', startCamera);
     stopBtn.addEventListener('click', stopCamera);
+
+    // Eye AF Viewfinder Toggle Button
+    if (eyeAfToggleBtn) {
+      eyeAfToggleBtn.addEventListener('click', () => {
+        eyeAfEnabled = !eyeAfEnabled;
+        eyeAfToggleBtn.classList.toggle('active', eyeAfEnabled);
+        eyeAfToggleBtn.setAttribute('aria-pressed', eyeAfEnabled ? 'true' : 'false');
+        const textSpan = eyeAfToggleBtn.querySelector('span');
+        if (textSpan) {
+          textSpan.textContent = eyeAfEnabled ? 'Eye AF: ON' : 'Eye AF: OFF';
+        }
+        if (!eyeAfEnabled) {
+          updateEyeAfUI(false);
+          showStatus('Eye AF reticles paused.', 'info');
+        } else {
+          showStatus('Eye AF enabled: Auto-detecting eyes for razor-sharp focus & framing!', 'info');
+        }
+      });
+    }
 
     // Native Mobile / iOS Camera Snapshot Handler (100% works even over HTTP!)
     if (mobileCameraInput) {
@@ -1103,6 +1305,36 @@ document.addEventListener('DOMContentLoaded', () => {
               offCtx.filter = filterCanvasMap[currentFilter];
             }
             offCtx.drawImage(img, 0, 0);
+
+            // Auto-detect eyes in the phone snapshot for optimal cover-framing and sharpness
+            if (window.CameraEngine) {
+              try {
+                const analysisCanvas = document.createElement('canvas');
+                analysisCanvas.width = 160;
+                analysisCanvas.height = 120;
+                const analysisCtx = analysisCanvas.getContext('2d');
+                analysisCtx.drawImage(img, 0, 0, 160, 120);
+                const testImgData = analysisCtx.getImageData(0, 0, 160, 120);
+                const pupilRes = window.CameraEngine.detectPupilsFromRGBA(testImgData.data, 160, 120);
+                if (pupilRes && pupilRes.detected) {
+                  currentFocalX = pupilRes.midpoint.x / 160;
+                  currentFocalY = pupilRes.midpoint.y / 120;
+                }
+
+                if (eyeAfEnabled && typeof window.CameraEngine.applySharpnessFilter === 'function') {
+                  const fullData = offCtx.getImageData(0, 0, img.width, img.height);
+                  const sharp = window.CameraEngine.applySharpnessFilter(fullData.data, img.width, img.height, {
+                    amount: 0.55,
+                    focalX: currentFocalX,
+                    focalY: currentFocalY,
+                    radius: 0.35
+                  });
+                  offCtx.putImageData(new ImageData(sharp, img.width, img.height), 0, 0);
+                }
+              } catch (err) {
+                // Keep mobile snap resilient
+              }
+            }
 
             // Render into the chosen template layout
             lastCapturedFrames = [off];
@@ -1191,36 +1423,23 @@ document.addEventListener('DOMContentLoaded', () => {
         offCtx.scale(-1, 1);
       }
       offCtx.drawImage(video, 0, 0, vWidth, vHeight);
-      // Return the off-screen canvas for later rendering
-      return offCanvas;
-    };
 
-    /**
-     * Draw an image onto a canvas context, cropping to fill the destination area while preserving aspect ratio.
-     * This implements a "cover" strategy: the image fills the dest rectangle, any excess is cropped.
-     */
-    const drawCropped = (ctx, img, dx, dy, dWidth, dHeight) => {
-      const sWidth = img.width;
-      const sHeight = img.height;
-      const destRatio = dWidth / dHeight;
-      const srcRatio = sWidth / sHeight;
-      let sx = 0, sy = 0, sw = sWidth, sh = sHeight;
-      if (srcRatio > destRatio) {
-        // Source is wider than destination: crop horizontally
-        sw = sHeight * destRatio;
-        sx = (sWidth - sw) / 2;
-      } else {
-        // Source is taller than destination: crop vertically
-        sh = sWidth / destRatio;
-        sy = (sHeight - sh) / 2;
+      // Apply razor-sharp eye sharpness enhancement if Eye AF is active
+      if (eyeAfEnabled && window.CameraEngine && typeof window.CameraEngine.applySharpnessFilter === 'function') {
+        try {
+          const imgData = offCtx.getImageData(0, 0, vWidth, vHeight);
+          const sharpened = window.CameraEngine.applySharpnessFilter(imgData.data, vWidth, vHeight, {
+            amount: 0.6,
+            focalX: currentFocalX,
+            focalY: currentFocalY,
+            radius: 0.35
+          });
+          const sharpenedImgData = new ImageData(sharpened, vWidth, vHeight);
+          offCtx.putImageData(sharpenedImgData, 0, 0);
+        } catch (e) {
+          // Keep frame capture resilient
+        }
       }
-      ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dWidth, dHeight);
-    };
-      if (currentFacingMode === 'user') {
-        offCtx.translate(vWidth, 0);
-        offCtx.scale(-1, 1);
-      }
-      offCtx.drawImage(video, 0, 0, vWidth, vHeight);
 
       return offCanvas;
     };
@@ -1328,7 +1547,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.fillStyle = '#0F172A';
             ctx.fillRect(x, y, cellW, cellH);
-            drawCropped(ctx, frame, x, y, cellW, cellH);
+            drawCover(ctx, frame, x, y, cellW, cellH, currentFocalX, currentFocalY);
 
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
             ctx.lineWidth = 1.5;
@@ -1348,7 +1567,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ctx.fillStyle = '#0F172A';
           ctx.fillRect(outerMargin, y, cellW, cellH);
-          drawCropped(ctx, f, outerMargin, y, cellW, cellH);
+          drawCover(ctx, f, outerMargin, y, cellW, cellH, currentFocalX, currentFocalY);
 
           ctx.strokeStyle = currentLayout === 'film35mm' ? '#FFFFFF' : 'rgba(168, 87, 126, 0.25)';
           ctx.lineWidth = currentLayout === 'film35mm' ? 2 : 1.5;
@@ -1380,7 +1599,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           ctx.fillStyle = '#0F172A';
           ctx.fillRect(x, y, cellW, cellH);
-          drawCropped(ctx, f, x, y, cellW, cellH);
+          drawCover(ctx, f, x, y, cellW, cellH, currentFocalX, currentFocalY);
 
           ctx.strokeStyle = 'rgba(168, 87, 126, 0.3)';
           ctx.lineWidth = 3;
@@ -1391,7 +1610,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const f = frames[0];
         ctx.fillStyle = '#0F172A';
         ctx.fillRect(outerMargin, outerMargin, gridAreaW, gridAreaH);
-        ctx.drawImage(f, 0, 0, f.width, f.height, outerMargin, outerMargin, gridAreaW, gridAreaH);
+        drawCover(ctx, f, outerMargin, outerMargin, gridAreaW, gridAreaH, currentFocalX, currentFocalY);
 
         ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
         ctx.lineWidth = 1;
