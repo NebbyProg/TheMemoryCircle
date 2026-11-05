@@ -358,6 +358,7 @@ ul, ol {
 
 /* Primary Navigation (Mobile Drawer by default) */
 .site-nav {
+  pointer-events: none; /* prevent hidden nav from blocking clicks */
   position: fixed;
   top: var(--header-height);
   left: 0;
